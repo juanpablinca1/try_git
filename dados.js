@@ -1,9 +1,3 @@
-/********************************************************
- *               Juguemos a los dados!!                 *
- *                                                      *
- *  Deben implementar las funciones faltantes según     *
- *  los comentarios que encuentran en cada una de ellas *
- ********************************************************/
 
 var myScore = 0;  // Tu Puntaje
 var robotScore = 0; // Puntaje Robot!
@@ -24,9 +18,7 @@ var main = function() {
     }
 };
 
-// Turno de Juego
-// Cada Jugador debe lanzar 2 dados
-// Tip: No necesitan modificar aquí ;)
+
 var play = function() {
     // Tu Jugador
     var my1 = rollDice();
@@ -46,61 +38,47 @@ var play = function() {
     drawScore('robot', robotScore);
 };
 
-/* Punto 1 - Lanzar un dado 
- * Utilizando la funcion rand(number) deberas
- * retornar un numero entre el 1 y el 6
- */
+
 var rollDice = function() {
-    return 1;
+    return rand(6);
 };
 
-/* Punto 2 - Calcular Puntaje
- * El puntaje se calcula sumando el valor de los dados
- *
- * Exepciones:
- * Si al menos un dado es 1: 1 punto
- * Si son pares: El doble de la suma de los dados
- */
+
 var calculateScore = function(d1, d2) {
     var score = 0;
     
     if(isOne(d1, d2)) {
-       // Puntaje si al menos hay un 1
+       score = 1
     } else if(isPair(d1, d2)) {
-       // Puntaje si es par
+       score = (d1+ d2)*2
     } else {
-       // Puntaje por defecto
+       score = d1 + d2
     }
     
     return score;
 };
 
-/* Punto 2.1 - Verificar si hay algun 1 */
+
 var isOne = function(d1, d2) {
-    return false;
+       return d1==1 || d2==1;                 
 };
 
-/* Punto 2.2 - Verificar si son pares */
+
 var isPair = function(d1, d2) {
-    return false;
+    return d1==d2;
 };
 
-/* Punto 3 - Calcular Ganador 
- *
- * Si alguno de los dos jugadores llega al maximo
- * puntaje habra un ganador.
- *
- * Gana el que tenga mayor puntaje
- * 
- * Para anunciar al ganador deberas usar las funciones:
- *    winner('my') o winner('robot')
- *
- *
- * La funcion debe retornar true o false en caso de haber
- * o no un ganador.
- */
+
 var isWinner = function(my, robot) {
-    return true;  
+    if (my >= 100){
+         winner('my')
+             }
+    if (robot >= 100){
+         winner('robot')
+             }            
+    return (my >= 100 || robot >= 100);
+    
+   
 };
 
 
@@ -133,9 +111,8 @@ var isWinner = function(my, robot) {
 
 
 
-/**********************************************
- * POR FAVOR NO MODIFICAR ESTAS FUNCIONES :)  *
- **********************************************/
+
+
 var rand = function(number) {
     return Math.floor(Math.random(number)*number) + 1;
 };
